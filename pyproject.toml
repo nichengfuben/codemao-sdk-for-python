@@ -1,20 +1,20 @@
 [build-system]
-requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pycodemao"
-dynamic = ["version"]
-description = "🚀 The ultimate Python SDK for CodeMao platform - Build, automate, and innovate with ease!"
+name = "codemao-sdk"
+version = "1.0.0"
+description = "🚀 编程猫 Python SDK - 最全面的编程猫社区API封装库"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
-    {name = "PyCodeMao Team", email = "team@pycodemao.dev"},
+    {name = "CodeMao SDK Team", email = "contact@codemao-sdk.com"}
 ]
 maintainers = [
-    {name = "PyCodeMao Team", email = "team@pycodemao.dev"},
+    {name = "CodeMao SDK Team", email = "contact@codemao-sdk.com"}
 ]
-keywords = ["codemao", "api", "sdk", "programming", "education", "coding", "platform"]
+keywords = ["codemao", "api", "sdk", "python", "education", "community", "coding"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
@@ -28,17 +28,17 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Topic :: Software Development :: Libraries :: Python Modules",
-    "Topic :: Education",
     "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
-    "Typing :: Typed",
+    "Topic :: Education",
+    "Topic :: Games/Entertainment",
+    "Framework :: AsyncIO",
+    "Natural Language :: Chinese (Simplified)",
+    "Natural Language :: English"
 ]
 requires-python = ">=3.8"
 dependencies = [
     "requests>=2.25.0",
-    "pydantic>=2.0.0",
-    "typing-extensions>=4.0.0",
-    "httpx>=0.24.0",
-    "aiohttp>=3.8.0",
+    "typing-extensions>=4.0.0; python_version<'3.10'"
 ]
 
 [project.optional-dependencies]
@@ -46,36 +46,60 @@ dev = [
     "pytest>=7.0.0",
     "pytest-cov>=4.0.0",
     "pytest-asyncio>=0.21.0",
-    "black>=23.0.0",
-    "isort>=5.12.0",
+    "black>=22.0.0",
+    "isort>=5.10.0",
+    "flake8>=4.0.0",
     "mypy>=1.0.0",
-    "flake8>=6.0.0",
-    "pre-commit>=3.0.0",
+    "pre-commit>=2.15.0",
+    "tox>=4.0.0"
 ]
 docs = [
-    "mkdocs>=1.5.0",
-    "mkdocs-material>=9.0.0",
-    "mkdocstrings[python]>=0.20.0",
+    "sphinx>=5.0.0",
+    "sphinx-rtd-theme>=1.0.0",
+    "sphinx-autodoc-typehints>=1.19.0",
+    "myst-parser>=0.18.0"
 ]
-examples = [
-    "jupyter>=1.0.0",
-    "matplotlib>=3.5.0",
-    "rich>=13.0.0",
+async = [
+    "aiohttp>=3.8.0",
+    "asyncio-throttle>=1.0.0"
+]
+all = [
+    "codemao-sdk[dev,docs,async]"
 ]
 
 [project.urls]
-Homepage = "https://github.com/pycodemao/pycodemao"
-Documentation = "https://pycodemao.readthedocs.io"
-Repository = "https://github.com/pycodemao/pycodemao.git"
-"Bug Tracker" = "https://github.com/pycodemao/pycodemao/issues"
-"Discussions" = "https://github.com/pycodemao/pycodemao/discussions"
-Changelog = "https://github.com/pycodemao/pycodemao/blob/main/CHANGELOG.md"
-
-[tool.setuptools_scm]
-write_to = "src/pycodemao/_version.py"
+Homepage = "https://github.com/nichengfuben/codemao-sdk-for-python"
+Documentation = "https://codemao-sdk.readthedocs.io"
+Repository = "https://github.com/nichengfuben/codemao-sdk-for-python"
+"Bug Tracker" = "https://github.com/nichengfuben/codemao-sdk-for-python/issues"
+"Discussions" = "https://github.com/nichengfuben/codemao-sdk-for-python/discussions"
+Changelog = "https://github.com/nichengfuben/codemao-sdk-for-python/blob/main/CHANGELOG.md"
+"Code of Conduct" = "https://github.com/nichengfuben/codemao-sdk-for-python/blob/main/CODE_OF_CONDUCT.md"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+codemao-sdk = ["py.typed"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --strict-markers --strict-config"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests",
+    "slow: Slow tests",
+    "network: Tests requiring network access"
+]
+filterwarnings = [
+    "error",
+    "ignore::UserWarning",
+    "ignore::DeprecationWarning"
+]
 
 [tool.black]
 line-length = 88
@@ -99,7 +123,8 @@ extend-exclude = '''
 profile = "black"
 multi_line_output = 3
 line_length = 88
-known_first_party = ["pycodemao"]
+known_first_party = ["codemaokit"]
+known_third_party = ["requests", "pytest"]
 
 [tool.mypy]
 python_version = "3.8"
@@ -115,23 +140,34 @@ warn_unused_ignores = true
 warn_no_return = true
 warn_unreachable = true
 strict_equality = true
+show_error_codes = true
 
-[tool.pytest.ini_options]
-minversion = "7.0"
-addopts = "-ra -q --strict-markers --strict-config"
-testpaths = ["tests"]
-python_files = ["test_*.py", "*_test.py"]
-python_classes = ["Test*"]
-python_functions = ["test_*"]
-markers = [
-    "unit: Unit tests",
-    "integration: Integration tests",
-    "slow: Slow tests",
+[[tool.mypy.overrides]]
+module = "requests.*"
+ignore_missing_imports = true
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    ".tox",
+    ".venv",
+    ".eggs",
+    "*.egg-info"
 ]
 
 [tool.coverage.run]
-source = ["src/pycodemao"]
+source = ["src"]
 branch = true
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/__init__.py"
+]
 
 [tool.coverage.report]
 exclude_lines = [
@@ -144,12 +180,7 @@ exclude_lines = [
     "if 0:",
     "if __name__ == .__main__.:",
     "class .*\\bProtocol\\):",
-    "@(abc\\.)?abstractmethod",
+    "@(abc\\.)?abstractmethod"
 ]
-
-[tool.flake8]
-max-line-length = 88
-extend-ignore = ["E203", "W503"]
-per-file-ignores = [
-    "__init__.py:F401",
-]
+show_missing = true
+precision = 2

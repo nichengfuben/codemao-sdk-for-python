@@ -1,0 +1,8 @@
+# CodeMao SDK 依赖文件
+# 生产依赖
+requests>=2.25.0
+typing-extensions>=4.0.0; python_version<"3.10"
+
+# 开发依赖（可选）
+# 安装时使用: pip install -e .[dev]
+# 或者: pip install -r requirements-dev.txt

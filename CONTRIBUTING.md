@@ -1,269 +1,305 @@
-# 贡献指南
+# 🤝 贡献指南
 
-感谢您对 PyCodeMao 项目的关注！我们欢迎所有形式的贡献，包括代码、文档、测试、问题报告等。
+感谢您考虑为 CodeMao SDK 做出贡献！我们欢迎各种形式的贡献，包括错误报告、功能建议、文档改进和代码贡献。
 
-## 开始之前
+## 🚀 快速开始
 
-在贡献之前，请先阅读以下内容：
+1. **Fork 项目** - 点击右上角的 "Fork" 按钮
+2. **克隆项目** - 将您的 fork 克隆到本地
+3. **创建分支** - 为您的功能或修复创建新分支
+4. **进行更改** - 进行您的改进
+5. **运行测试** - 确保所有测试通过
+6. **提交 PR** - 提交 Pull Request
 
-1. 阅读我们的 [行为准则](CODE_OF_CONDUCT.md)
-2. 查看现有的 [问题](https://github.com/pycodemao/pycodemao/issues) 和 [拉取请求](https://github.com/pycodemao/pycodemao/pulls)
-3. 加入我们的 [Discord 社区](https://discord.gg/pycodemao) 进行讨论
+## 📋 贡献类型
 
-## 贡献方式
+### 🐛 报告错误
 
-### 报告问题
+如果您发现了错误，请通过 [GitHub Issues](https://github.com/nichengfuben/codemao-sdk-for-python/issues) 报告。
 
-如果您发现了 bug 或者有功能建议，请通过以下方式报告：
+**错误报告模板**：
+```markdown
+**描述**
+清晰简洁地描述错误。
 
-1. **搜索现有问题**：在创建新问题之前，请先搜索是否已经有类似的问题
-2. **创建新问题**：使用我们的问题模板创建详细的问题报告
-3. **提供详细信息**：包括复现步骤、期望行为、实际行为、环境信息等
+**重现步骤**
+1. 转到 '...'
+2. 点击 '...'
+3. 向下滚动到 '...'
+4. 看到错误
 
-### 代码贡献
+**预期行为**
+清晰简洁地描述您期望发生的事情。
+
+**截图**
+如果适用，请添加截图以帮助解释您的问题。
+
+**环境 (请完成以下信息):**
+- OS: [例如 iOS]
+- Python版本: [例如 3.9]
+- SDK版本: [例如 1.0.0]
+
+**附加上下文**
+在此处添加有关问题的任何其他上下文。
+```
+
+### 💡 功能建议
+
+如果您有功能建议，请通过 [GitHub Issues](https://github.com/nichengfuben/codemao-sdk-for-python/issues) 提交。
+
+**功能建议模板**：
+```markdown
+**您的功能请求是否与问题相关？请描述。**
+清晰简洁地描述问题是什么。例如，当[...]时我总是感到沮丧
+
+**描述您想要的解决方案**
+清晰简洁地描述您想要发生的事情。
+
+**描述您考虑过的替代方案**
+清晰简洁地描述您考虑过的任何替代解决方案或功能。
+
+**附加上下文**
+在此处添加有关功能请求的任何其他上下文或截图。
+```
+
+### 📝 文档改进
+
+文档改进总是受欢迎的！您可以：
+- 修复拼写错误
+- 改进文档清晰度
+- 添加更多示例
+- 改进API文档
+
+### 💻 代码贡献
 
 #### 开发环境设置
 
-1. **Fork 项目**：点击 GitHub 上的 Fork 按钮
-2. **克隆项目**：
-   ```bash
-   git clone https://github.com/您的用户名/pycodemao.git
-   cd pycodemao
-   ```
+1. **克隆项目**：
+```bash
+git clone https://github.com/YOUR_USERNAME/codemao-sdk-for-python.git
+cd codemao-sdk-for-python
+```
 
-3. **创建虚拟环境**：
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # Linux/macOS
-   # 或者
-   .\venv\Scripts\activate  # Windows
-   ```
+2. **创建虚拟环境**：
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# 或
+.\venv\Scripts\activate  # Windows
+```
 
-4. **安装开发依赖**：
-   ```bash
-   pip install -e ".[dev]"
-   ```
+3. **安装开发依赖**：
+```bash
+pip install -e .[dev]
+```
 
-5. **安装预提交钩子**：
-   ```bash
-   pre-commit install
-   ```
+4. **安装预提交钩子**：
+```bash
+pre-commit install
+```
 
-#### 开发流程
+#### 代码风格
 
-1. **创建分支**：
-   ```bash
-   git checkout -b feature/您的功能名称
-   # 或者
-   git checkout -b fix/问题修复
-   ```
+我们使用以下工具确保代码质量：
 
-2. **编写代码**：
-   - 遵循项目的编码规范
-   - 添加适当的类型注解
-   - 编写单元测试
-   - 更新文档
+- **Black**: 代码格式化
+- **isort**: 导入排序
+- **flake8**: 代码检查
+- **mypy**: 类型检查
 
-3. **运行测试**：
-   ```bash
-   pytest
-   pytest --cov=src --cov-report=html  # 带覆盖率
-   ```
+**运行代码质量检查**：
+```bash
+# 格式化代码
+black src/ tests/
+isort src/ tests/
 
-4. **代码质量检查**：
-   ```bash
-   black src/ tests/
-   isort src/ tests/
-   mypy src/
-   pylint src/
-   ```
+# 运行代码检查
+flake8 src/ tests/
+mypy src/
 
-5. **提交代码**：
-   ```bash
-   git add .
-   git commit -m "feat: 添加新功能"
-   ```
+# 运行所有检查
+pre-commit run --all-files
+```
 
-#### 提交信息规范
+#### 测试
+
+**运行测试**：
+```bash
+# 运行所有测试
+pytest
+
+# 运行特定测试文件
+pytest tests/test_client.py
+
+# 运行带有覆盖率的测试
+pytest --cov=src --cov-report=html
+
+# 运行慢速测试
+pytest -m "not slow"
+```
+
+**测试覆盖率要求**：
+- 单元测试覆盖率：90%+
+- 集成测试覆盖率：80%+
+
+#### 提交消息规范
 
 我们使用 [Conventional Commits](https://www.conventionalcommits.org/) 规范：
 
-- `feat:` 新功能
-- `fix:` 修复 bug
-- `docs:` 文档更新
-- `style:` 代码格式调整
-- `refactor:` 代码重构
-- `test:` 测试相关
-- `chore:` 构建过程或辅助工具的变动
+```
+<type>[optional scope]: <description>
 
-示例：
+[optional body]
+
+[optional footer(s)]
+```
+
+**类型说明**：
+- `feat`: 新功能
+- `fix`: 错误修复
+- `docs`: 文档更新
+- `style`: 代码格式（不影响代码运行的更改）
+- `refactor`: 代码重构（既不修复错误也不添加功能）
+- `perf`: 性能改进
+- `test`: 添加缺失的测试或更正现有测试
+- `build`: 影响构建系统或外部依赖的更改
+- `ci`: CI配置文件和脚本的更改
+- `chore`: 其他不修改src或测试文件的更改
+- `revert`: 恢复先前的提交
+
+**示例**：
+```
+feat: add async support for client
+
+Implement async/await pattern for all API methods to improve performance
+and user experience.
+
+Closes #123
+```
+
+## 🔄 工作流程
+
+### 1. 创建分支
+
 ```bash
-git commit -m "feat: 添加用户搜索功能"
-git commit -m "fix: 修复认证超时问题"
-git commit -m "docs: 更新 API 文档"
+git checkout -b feature/your-feature-name
+# 或
+git checkout -b fix/issue-description
 ```
 
-### 文档贡献
+### 2. 进行更改
 
-我们欢迎文档改进，包括：
+- 编写代码
+- 添加测试
+- 更新文档
+- 运行测试确保通过
 
-- 修复拼写错误或语法错误
-- 改进现有文档的清晰度
-- 添加新的使用示例
-- 翻译文档到其他语言
+### 3. 提交更改
 
-文档文件位于 `docs/` 目录下，使用 Markdown 格式编写。
-
-### 测试贡献
-
-- 添加新的测试用例
-- 改进现有测试的覆盖率
-- 报告测试中发现的问题
-
-## 代码规范
-
-### Python 代码风格
-
-- 遵循 [PEP 8](https://www.python.org/dev/peps/pep-0008/) 编码规范
-- 使用 [Black](https://black.readthedocs.io/) 进行代码格式化
-- 使用 [isort](https://pycqa.github.io/isort/) 管理导入语句
-- 所有函数和方法必须包含类型注解
-- 遵循 [PEP 257](https://www.python.org/dev/peps/pep-0257/) 文档字符串规范
-
-### 项目结构
-
-```
-src/pycodemao/
-├── __init__.py          # 包初始化
-├── client.py           # 主要客户端类
-├── models.py           # 数据模型
-├── exceptions.py       # 异常定义
-├── utils.py            # 工具函数
-└── types.py            # 类型定义
-
-tests/
-├── unit/               # 单元测试
-├── integration/        # 集成测试
-└── conftest.py        # 测试配置
+```bash
+git add .
+git commit -m "feat: add new feature"
 ```
 
-### 测试要求
+### 4. 推送到您的fork
 
-- 所有新功能必须包含相应的测试
-- 测试覆盖率应保持在 90% 以上
-- 使用 pytest 作为测试框架
-- 测试文件应以 `test_` 开头
-
-示例测试：
-```python
-import pytest
-from pycodemao import CodeMaoClient, UserNotFoundError
-
-@pytest.mark.asyncio
-async def test_get_user_success():
-    async with CodeMaoClient(api_key="test_key") as client:
-        user = await client.get_user("test_user")
-        assert user.username == "test_user"
-
-@pytest.mark.asyncio
-async def test_get_user_not_found():
-    async with CodeMaoClient(api_key="test_key") as client:
-        with pytest.raises(UserNotFoundError):
-            await client.get_user("non_existent_user")
+```bash
+git push origin feature/your-feature-name
 ```
 
-### 文档要求
+### 5. 创建Pull Request
 
-- 所有公共函数和类必须有文档字符串
-- 文档字符串应遵循 Google 风格或 NumPy 风格
-- 复杂的算法或业务逻辑需要详细注释
-- 更新 API 文档以反映代码变更
+1. 转到 GitHub 上的您的 fork
+2. 点击 "Compare & pull request"
+3. 填写 PR 模板
+4. 提交 PR
 
-## 拉取请求流程
+## 📝 Pull Request 模板
 
-1. **创建拉取请求**：在 GitHub 上创建新的拉取请求
-2. **填写模板**：完整填写拉取请求模板
-3. **关联问题**：如果修复了某个问题，请关联该问题
-4. **等待审查**：等待项目维护者进行代码审查
-5. **处理反馈**：根据审查意见进行修改
-6. **合并**：审查通过后，代码将被合并到主分支
-
-### 拉取请求模板
+**请使用以下模板创建 PR**：
 
 ```markdown
-## 描述
-简要描述这个变更的目的
+## 📋 描述
 
-## 类型
-- [ ] Bug 修复
-- [ ] 新功能
-- [ ] 代码重构
-- [ ] 文档更新
+简要描述此 PR 中的更改。
 
-## 检查清单
-- [ ] 我的代码遵循项目的编码规范
-- [ ] 我添加了相应的测试
-- [ ] 我更新了相关文档
-- [ ] 我通过了所有测试
-- [ ] 我通过了代码质量检查
+## 🔗 相关问题
 
-## 相关问题
-修复 #123
+链接到相关问题（如果有）：
+Fixes #(issue)
+
+## 🚀 更改类型
+
+- [ ] 🐛 错误修复（非破坏性更改，修复了一个问题）
+- [ ] ✨ 新功能（非破坏性更改，添加了功能）
+- [ ] 💥 破坏性更改（会导致现有功能无法按预期工作的修复或功能）
+- [ ] 📚 文档更新
+- [ ] 🧪 测试添加或更新
+- [ ] 🔧 代码重构
+- [ ] ⚡ 性能改进
+- [ ] 🏗️ 构建系统更改
+- [ ] 🔄 CI/CD 更改
+
+## ✅ 检查清单
+
+- [ ] 我的代码遵循本项目的代码风格
+- [ ] 我已经进行了自我审查
+- [ ] 我已经添加了测试，证明我的修复有效或新功能按预期工作
+- [ ] 我已经相应地更新了文档
+- [ ] 我的更改没有产生新的警告
+- [ ] 任何相关更改都已记录到 CHANGELOG.md
+
+## 🧪 测试
+
+描述您如何测试这些更改。
+
+## 📸 截图（如果适用）
+
+添加截图以帮助解释您的更改。
+
+## 📝 附加注释
+
+添加任何其他注释或信息。
 ```
 
-## 发布流程
+## 🎯 优先级
 
-新版本的发布遵循以下流程：
+我们优先处理以下类型的贡献：
 
-1. **更新版本号**：在 `src/pycodemao/_version.py` 中更新版本号
-2. **更新变更日志**：在 `CHANGELOG.md` 中添加新版本记录
-3. **创建发布标签**：创建新的 Git 标签
-4. **构建发布包**：构建并上传到 PyPI
-5. **创建 GitHub 发布**：在 GitHub 上创建新的发布
+1. **🐛 错误修复** - 修复现有功能中的错误
+2. **📚 文档改进** - 改进现有文档
+3. **✨ 新功能** - 添加新功能（请先讨论）
+4. **🧪 测试** - 添加缺失的测试
+5. **⚡ 性能** - 性能改进
 
-## 社区参与
+## 🏷️ 标签
 
-### Discord 社区
+我们使用以下标签来分类问题和 PR：
 
-加入我们的 Discord 社区：
-- 获取帮助和支持
-- 参与功能讨论
-- 了解最新动态
-- 结识其他贡献者
+- `bug`: 需要修复的问题
+- `enhancement`: 新功能或改进
+- `documentation`: 文档改进
+- `good first issue`: 适合新贡献者的问题
+- `help wanted`: 需要帮助的问题
+- `question`: 需要回答的问题
 
-### 邮件列表
+## 💬 沟通
 
-订阅我们的邮件列表以获取更新通知。
+- **GitHub Issues**: 错误报告和功能建议
+- **GitHub Discussions**: 一般讨论和问题
+- **Pull Requests**: 代码贡献
 
-## 奖励和认可
+## 🙏 感谢
 
-### 贡献者列表
+感谢您对 CodeMao SDK 的贡献！您的贡献有助于让这个项目变得更好。
 
-所有贡献者都会被添加到项目的贡献者列表中。
+## 📞 联系
 
-### 特别贡献
+如果您有任何问题，请随时联系我们：
 
-对于特别重要的贡献，我们可能会：
-- 在发布说明中特别提及
-- 邀请加入核心团队
-- 提供项目相关的奖励
-
-## 联系信息
-
-如果您有任何问题或建议，请通过以下方式联系我们：
-
-- **GitHub Issues**: [创建新问题](https://github.com/pycodemao/pycodemao/issues/new)
-- **Discord**: [加入社区](https://discord.gg/pycodemao)
-- **邮件**: contact@pycodemao.org
-
-## 许可证
-
-通过贡献代码，您同意您的贡献将在项目的 MIT 许可证下发布。
-
-## 致谢
-
-感谢所有为 PyCodeMao 项目做出贡献的开发者和用户！
+- **邮件**: [contact@codemao-sdk.com](mailto:contact@codemao-sdk.com)
+- **GitHub Discussions**: [项目讨论区](https://github.com/nichengfuben/codemao-sdk-for-python/discussions)
 
 ---
 
-**Happy coding! 🚀**
+**再次感谢您的贡献！** 🎉

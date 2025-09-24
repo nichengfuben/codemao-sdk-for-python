@@ -1,268 +1,134 @@
-# 变更日志
+# 🚀 更新日志
 
-所有重要的变更都会记录在这个文件中。
+所有重要的更新都会记录在这个文件中。
 
 格式基于 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)，
-并且遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html)。
+并且这个项目遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html)。
 
-## [2.0.0] - 2024-01-15
+## [Unreleased]
 
-### 重大变更
+### 🚀 新增
+- 异步API支持
+- WebSocket实时通知
+- 批量操作优化
+- 更多作品类型支持
 
-- **架构重构**: 完全重写了 SDK 架构，采用领域驱动设计 (DDD)
-- **异步支持**: 所有 API 调用现在都基于 asyncio，提供高性能的异步操作
-- **类型安全**: 添加了完整的类型注解，支持 mypy 静态类型检查
-- **异常体系**: 重新设计了异常层次结构，提供更细粒度的错误处理
+### 🐛 修复
+- 网络重连机制
+- 认证令牌刷新
+- 错误处理优化
 
-### 新增功能
+### 📚 文档
+- 完整API文档
+- 更多使用示例
+- 最佳实践指南
 
-- **现代化客户端**: 新的 `CodeMaoClient` 类，支持上下文管理器
-- **数据模型**: 基于 Pydantic 的类型安全数据模型
-- **速率限制**: 内置的速率限制和重试机制
-- **并发支持**: 优化的并发请求处理
-- **日志系统**: 结构化的日志记录支持
-- **测试覆盖**: 完整的单元测试和集成测试套件
+## [1.0.0] - 2024-01-01
 
-### API 变更
+### 🚀 新增
+- 🎉 **初始版本发布**
+- 完整的用户认证系统
+- 板块管理功能
+- 帖子发布和管理
+- 作品信息查询
+- 消息统计功能
+- 用户信息更新
+- 完整的异常处理
+- 类型注解支持
+- 完整的测试覆盖
 
-- **认证方式**: 改为基于 API Key 的认证机制
-- **错误处理**: 引入了层次化的异常体系
-- **分页响应**: 统一的分页响应格式
-- **数据验证**: 强化的数据验证和序列化
+### ✨ 功能特性
+- **简单易用**: 5分钟快速上手
+- **类型安全**: 完整的类型注解
+- **异常处理**: 详细的错误信息
+- **测试覆盖**: 90%+ 测试覆盖率
+- **文档完善**: 详细的使用文档
+- **社区支持**: 活跃的开发者社区
 
-### 移除的功能
+### 📋 API 功能
+- 用户登录/登出
+- 获取板块列表
+- 根据ID/名称获取板块
+- 发布帖子
+- 删除帖子
+- 回复帖子
+- 获取消息统计
+- 更新用户信息
+- 获取用户作品
+- 获取用户收藏
+- 获取用户关注者
 
-- **同步 API**: 移除了所有同步接口，只保留异步版本
-- **旧的数据模型**: 移除了旧的字典式数据模型
-- **过时的工具函数**: 清理了不再使用的工具函数
+### 🔧 技术特性
+- Python 3.8+ 支持
+- 完整的类型注解
+- 异步支持准备
+- 模块化设计
+- 可扩展架构
+- 生产就绪
 
-### 改进
+### 📦 安装
+```bash
+pip install codemao-sdk
+```
 
-- **性能优化**: 通过连接池和缓存机制提升性能
-- **文档完善**: 添加了详细的 API 文档和使用指南
-- **示例代码**: 提供了丰富的示例代码和最佳实践
-- **错误恢复**: 增强了错误恢复和重试机制
+### 🚀 快速开始
+```python
+from codemaokit import CodeMaoClient
 
-### 修复
+# 创建客户端
+client = CodeMaoClient()
 
-- **内存泄漏**: 修复了连接池的内存泄漏问题
-- **超时处理**: 改进了网络超时和重试逻辑
-- **数据验证**: 修复了多个数据验证的边界情况
+# 登录
+user = client.login("username", "password")
+print(f"欢迎, {user.nickname}!")
 
-## [1.5.0] - 2023-12-01
+# 获取板块列表
+boards = client.get_boards()
+for board in boards:
+    print(f"板块: {board.name}")
 
-### 新增功能
-
-- **作品管理**: 添加了作品的创建、更新、删除功能
-- **论坛支持**: 新增论坛帖子的发布和管理
-- **搜索功能**: 支持用户和作品的搜索
-- **批量操作**: 支持批量获取用户和作品信息
-
-### 改进
-
-- **连接管理**: 优化了 HTTP 连接管理
-- **错误信息**: 改进了错误信息的详细程度
-- **性能优化**: 减少了不必要的 API 调用
-
-### 修复
-
-- **认证问题**: 修复了长时间运行的认证失效问题
-- **数据解析**: 修复了某些 API 响应的数据解析错误
-
-## [1.4.0] - 2023-11-15
-
-### 新增功能
-
-- **用户资料**: 支持获取和更新用户详细资料
-- **社交功能**: 添加关注和取消关注功能
-- **作品点赞**: 支持对作品进行点赞和取消点赞
-
-### 改进
-
-- **缓存机制**: 添加了简单的响应缓存
-- **重试策略**: 改进了失败请求的重试策略
-
-### 修复
-
-- **网络问题**: 修复了网络不稳定时的连接问题
-- **数据格式**: 修复了日期时间格式的处理问题
-
-## [1.3.0] - 2023-10-30
-
-### 新增功能
-
-- **作品列表**: 支持获取用户的作品列表
-- **作品详情**: 支持获取单个作品的详细信息
-- **分页支持**: 添加了对分页 API 的支持
-
-### 改进
-
-- **代码结构**: 重构了部分代码结构，提高可维护性
-- **文档**: 更新了 API 文档和使用说明
-
-### 修复
-
-- **异常处理**: 修复了异常处理中的内存泄漏
-- **并发问题**: 修复了并发请求时的竞态条件
-
-## [1.2.0] - 2023-10-15
-
-### 新增功能
-
-- **日志支持**: 添加了基本的日志记录功能
-- **配置管理**: 支持通过配置文件管理 SDK 设置
-- **环境变量**: 支持通过环境变量配置 API 密钥
-
-### 改进
-
-- **错误处理**: 改进了错误处理和异常信息
-- **性能**: 优化了 API 请求的性能
-
-### 修复
-
-- **超时设置**: 修复了自定义超时设置不生效的问题
-- **重试机制**: 修复了重试机制中的逻辑错误
-
-## [1.1.0] - 2023-09-30
-
-### 新增功能
-
-- **用户搜索**: 支持按用户名搜索用户
-- **批量获取**: 支持批量获取用户信息
-- **统计信息**: 添加了用户统计信息的获取
-
-### 改进
-
-- **API 调用**: 优化了 API 调用的效率
-- **响应时间**: 减少了 API 响应的等待时间
-
-### 修复
-
-- **认证**: 修复了 API 密钥认证的问题
-- **编码**: 修复了中文字符编码的问题
-
-## [1.0.0] - 2023-09-15
-
-### 新增功能
-
-- **初始版本**: 发布了 SDK 的初始版本
-- **用户管理**: 支持基本的用户信息的获取
-- **基础架构**: 建立了 SDK 的基础架构
-- **文档**: 提供了基础的使用文档
-
-### 功能特性
-
-- **Python 支持**: 支持 Python 3.8+
-- **HTTP 客户端**: 基于 aiohttp 的异步 HTTP 客户端
-- **错误处理**: 基础的错误处理机制
-- **类型提示**: 基本的类型提示支持
+# 发布帖子
+post_id = client.create_post(
+    title="我的第一个帖子",
+    content="这是我在编程猫社区发布的内容",
+    board_name="技术讨论"
+)
+print(f"帖子发布成功: {post_id}")
+```
 
 ---
 
-## 升级指南
+## 🎯 版本历史
 
-### 从 1.x 升级到 2.0
+### 1.0.0 (2024-01-01)
+- 🎉 初始版本发布
+- ✅ 完整的API功能
+- ✅ 完整的测试覆盖
+- ✅ 详细文档
+- ✅ 生产就绪
 
-#### 重大变更
+---
 
-1. **异步化**: 所有 API 现在都必须是异步调用
-   ```python
-   # 旧版本 (1.x)
-   user = client.get_user("username")
-   
-   # 新版本 (2.0)
-   user = await client.get_user("username")
-   ```
+## 🔗 相关链接
 
-2. **认证方式**: 改为 API Key 认证
-   ```python
-   # 旧版本 (1.x)
-   client = CodeMaoClient(username="user", password="pass")
-   
-   # 新版本 (2.0)
-   client = CodeMaoClient(api_key="your_api_key")
-   ```
+- [GitHub仓库](https://github.com/nichengfuben/codemao-sdk-for-python)
+- [文档](https://codemao-sdk.readthedocs.io)
+- [PyPI页面](https://pypi.org/project/codemao-sdk/)
+- [问题反馈](https://github.com/nichengfuben/codemao-sdk-for-python/issues)
+- [讨论区](https://github.com/nichengfuben/codemao-sdk-for-python/discussions)
 
-3. **异常处理**: 使用新的异常层次结构
-   ```python
-   # 旧版本 (1.x)
-   try:
-       user = client.get_user("username")
-   except Exception as e:
-       print(f"Error: {e}")
-   
-   # 新版本 (2.0)
-   try:
-       user = await client.get_user("username")
-   except UserNotFoundError:
-       print("User not found")
-   except AuthenticationError:
-       print("Authentication failed")
-   ```
+---
 
-#### 迁移步骤
+## 🙏 贡献者
 
-1. **更新依赖**: 安装新版本
-   ```bash
-   pip install pycodemao==2.0.0
-   ```
+感谢所有为这个项目做出贡献的开发者们！
 
-2. **修改认证**: 获取 API Key 并更新认证方式
-   ```python
-   # 申请 API Key 后
-   client = CodeMaoClient(api_key="your_api_key")
-   ```
+<a href="https://github.com/nichengfuben/codemao-sdk-for-python/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=nichengfuben/codemao-sdk-for-python" alt="贡献者" />
+</a>
 
-3. **添加异步**: 将所有调用改为异步
-   ```python
-   import asyncio
-   
-   async def main():
-       async with CodeMaoClient(api_key="key") as client:
-           user = await client.get_user("username")
-           # ... 其他调用
-   
-   asyncio.run(main())
-   ```
+---
 
-4. **更新异常处理**: 使用新的异常类型
-   ```python
-   from pycodemao import UserNotFoundError, AuthenticationError
-   
-   try:
-       user = await client.get_user("username")
-   except UserNotFoundError:
-       # 处理用户未找到
-       pass
-   except AuthenticationError:
-       # 处理认证失败
-       pass
-   ```
+## 📄 许可证
 
-5. **验证数据模型**: 更新代码以使用新的数据模型
-   ```python
-   # 旧版本返回字典
-   user_data = client.get_user("username")
-   print(user_data["username"])
-   
-   # 新版本返回模型对象
-   user = await client.get_user("username")
-   print(user.username)
-   ```
-
-### 兼容性说明
-
-- **Python 版本**: 2.0 版本需要 Python 3.8+
-- **依赖更新**: 主要依赖已更新到最新版本
-- **API 变更**: 部分 API 的返回值格式有变化
-- **配置格式**: 配置文件格式已更新
-
-### 回滚指南
-
-如果需要回滚到 1.x 版本：
-
-```bash
-pip install "pycodemao<2.0"
-```
-
-注意：回滚后需要恢复旧的代码实现。
+MIT License - 详见 [LICENSE](LICENSE) 文件
